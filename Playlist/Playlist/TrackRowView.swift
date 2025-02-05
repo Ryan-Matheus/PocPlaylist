@@ -8,23 +8,48 @@
 import SwiftUI
 
 struct TrackRowView: View {
-    let trackNumber: String
-    let isPlaying: Bool
-    let explicit: Bool
-    let isDownloaded: Bool
     let title: String
     let subtitle: String
     let rightButtonAction: () -> Void
     let onTapAction: () -> Void
     
+    let trackNumber: String?
+    let image: String?
+    let isPlaying: Bool
+    let explicit: Bool
+    let isDownloaded: Bool
+    
     @State private var isPressed = false
     @State private var isOptionPressed = false
+    
+    init(
+        title: String,
+        subtitle: String,
+        rightButtonAction: @escaping () -> Void,
+        onTapAction: @escaping () -> Void,
+        trackNumber: String? = nil,
+        image: String? = nil,
+        isPlaying: Bool = false,
+        explicit: Bool = false,
+        isDownloaded: Bool = false
+    ) {
+        self.title = title
+        self.subtitle = subtitle
+        self.rightButtonAction = rightButtonAction
+        self.onTapAction = onTapAction
+        self.trackNumber = trackNumber
+        self.image = image
+        self.isPlaying = isPlaying
+        self.explicit = explicit
+        self.isDownloaded = isDownloaded
+    }
     
     private enum Constants {
         static let height: CGFloat = 64
         static let spacing: CGFloat = 16
         static let numberWidth: CGFloat = 24
         static let iconSize: CGFloat = 16
+        static let imageSize: CGFloat = 40
         static let horizontalPadding: CGFloat = 16
         static let verticalPadding: CGFloat = 8
         static let highlightDuration: CGFloat = 0.15
@@ -32,7 +57,6 @@ struct TrackRowView: View {
         static let primaryText = Color.white
         static let secondaryText = Color.gray.opacity(0.7)
         static let playingColor = Color.green
-        static let highlightColor = Color.gray.opacity(0.15)
     }
     
     var body: some View {
@@ -50,9 +74,22 @@ struct TrackRowView: View {
             }
         }) {
             HStack(spacing: Constants.spacing) {
-                Text(trackNumber)
-                    .frame(width: Constants.numberWidth)
-                    .foregroundColor(Constants.primaryText)
+                Group {
+                    if let number = trackNumber {
+                        Text(number)
+                            .padding(.leading, 0)
+                            .padding(.trailing, Constants.spacing)
+                            .foregroundColor(Constants.primaryText)
+                    }
+                    
+                    if let image = image {
+                        Image(image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: Constants.imageSize, height: Constants.imageSize)
+                            .cornerRadius(4)
+                    }
+                }
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
