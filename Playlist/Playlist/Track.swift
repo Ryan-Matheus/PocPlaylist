@@ -13,6 +13,7 @@ struct Track: Identifiable {
     let title: String
     let subtitle: String
     let isExplicit: Bool
-    let isDownloaded: Bool 
+    let isDownloaded: Bool
+    var image: String?
     var isPlaying: Bool
 }
