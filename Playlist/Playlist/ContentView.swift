@@ -74,6 +74,7 @@ struct NumberTracksSection: View {
                     isDownloaded: track.isDownloaded
                 )
                 .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
                 .listRowBackground(Color.black)
             }
         }
@@ -97,6 +98,7 @@ struct ImageTracksSection: View {
                     isDownloaded: track.isDownloaded
                 )
                 .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
                 .listRowBackground(Color.black)
             }
         }
@@ -121,6 +123,7 @@ struct NumberImageTracksSection: View {
                     isDownloaded: track.isDownloaded
                 )
                 .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
                 .listRowBackground(Color.black)
             }
         }
@@ -143,6 +146,7 @@ struct SimpleTracksSection: View {
                     isDownloaded: track.isDownloaded
                 )
                 .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
                 .listRowBackground(Color.black)
             }
         }
