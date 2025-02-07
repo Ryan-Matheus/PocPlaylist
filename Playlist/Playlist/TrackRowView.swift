@@ -49,7 +49,7 @@ struct TrackRowView: View {
         static let spacing: CGFloat = 16
         static let numberWidth: CGFloat = 24
         static let iconSize: CGFloat = 16
-        static let imageSize: CGFloat = 40
+        static let imageSize: CGFloat = 48
         static let horizontalPadding: CGFloat = 16
         static let verticalPadding: CGFloat = 8
         static let highlightDuration: CGFloat = 0.15
@@ -77,17 +77,18 @@ struct TrackRowView: View {
                 Group {
                     if let number = trackNumber {
                         Text(number)
-                            .padding(.leading, 0)
-                            .padding(.trailing, Constants.spacing)
+                            .frame(width: Constants.spacing, height: Constants.spacing, alignment: .center)
                             .foregroundColor(Constants.primaryText)
+                            .font(.system(size: 15))
                     }
                     
                     if let image = image {
                         Image(image)
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
+                            .aspectRatio(1, contentMode: .fit)
                             .frame(width: Constants.imageSize, height: Constants.imageSize)
                             .cornerRadius(4)
+                            .clipped()
                     }
                 }
                 
